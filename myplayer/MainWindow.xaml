@@ -1,0 +1,31 @@
+﻿<Window x:Class="myplayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:myplayer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="340" WindowStyle="SingleBorderWindow" SizeToContent="Manual" MinWidth="390" MinHeight="428">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF3A3838"/>
+            <GradientStop Color="#FF9E9494" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Margin="138,26,138,0" Width="102" Grid.Row="1" Height="20" VerticalAlignment="Top">
+            <Button x:Name="Play_btn" Click="Play_btn_Click">Play</Button>
+            <Button x:Name="Pause_btn" Margin="5,0" Click="Pause_btn_Click" Content="Pause" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            <Button x:Name="Stop_btn" Click="Stop_btn_Click" Content="Stop"/>
+        </WrapPanel>
+        <Label x:Name="lblStatus" Content="No track" HorizontalAlignment="Center" Grid.Row="1" Width="184" 
+               Margin="0,0,0,35" HorizontalContentAlignment="Center"/>
+        <TextBlock Margin="0,0,33,38" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1">Громкость:</TextBlock>
+        <Slider x:Name="voulme" Margin="0,0,5,15" Minimum="0" Maximum="1"
+                            Value="0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1" Width="116" ValueChanged="voulme_ValueChanged"/>
+    </Grid>
+</Window>
