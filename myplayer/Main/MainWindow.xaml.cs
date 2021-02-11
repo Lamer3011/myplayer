@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Media;
 using System.Windows.Threading;
 using Microsoft.Win32;
-using System.Threading;
 
 namespace myplayer
 {
@@ -29,12 +18,12 @@ namespace myplayer
         {
             InitializeComponent();
 			OpenFileDialog openFileDialog = new OpenFileDialog();
-			openFileDialog.Filter = "Media files (*.mp3)|*.mp3|All files (*.*)|*.*";
+			openFileDialog.Filter = "Media files (*.mp3)|*.mp3|All files (*.*)|*.*";//Відкривання файлу
 			if (openFileDialog.ShowDialog() == true)
             {
 				mediaPlayer.Open(new Uri(openFileDialog.FileName));
 				string file_name = openFileDialog.SafeFileName;
-				this.Title = file_name + " MyPlayer";
+				name_label.Content = file_name;
 			}
 			DispatcherTimer timer = new DispatcherTimer();
 			timer.Interval = TimeSpan.FromSeconds(1);
@@ -46,35 +35,49 @@ namespace myplayer
 		{
 			if (mediaPlayer.Source != null)
             {
-				string pos = mediaPlayer.Position.ToString(@"mm\:ss");
+				string pos = mediaPlayer.Position.ToString(@"mm\:ss");		//Хвилини та секунди в лейблі
 				string maxtime = mediaPlayer.NaturalDuration.TimeSpan.ToString(@"mm\:ss");
 
-				lblStatus.Content = String.Format("{0} / {1}", pos, max);
+				lblStatus.Content = String.Format("{0} / {1}", pos, maxtime);
 			}
 			else
             {
-				lblStatus.Content = "No file selected...";
+				lblStatus.Content = "No file selected...";			//Помилка
 			}
 		}
 
-		private void Play_btn_Click(object sender, RoutedEventArgs e)
+		private void Play_btn_Click(object sender, RoutedEventArgs e) 
 		{
-            mediaPlayer.Play();
+            mediaPlayer.Play();                                     //Старт пісні
 		}
 
 		private void Pause_btn_Click(object sender, RoutedEventArgs e)
 		{
-			mediaPlayer.Pause();
+			mediaPlayer.Pause();									//Пауза пісні
 		}
 
 		private void Stop_btn_Click(object sender, RoutedEventArgs e)
 		{
-			mediaPlayer.Stop();
+			mediaPlayer.Stop();										//Зупинити пісню
 		}
 
         private void voulme_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-			mediaPlayer.Volume = (double)voulme.Value;
+			mediaPlayer.Volume = (double)voulme.Value;				//Змінити гучність
+		}
+        private void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+			if (e.Delta > 0)
+            {
+				mediaPlayer.Volume += 0.01;
+				voulme.Value += 0.01;
+			}
+																	//Змінити гучність мишкою
+			else if (e.Delta < 0)
+            {
+				mediaPlayer.Volume -= 0.01;
+				voulme.Value -= 0.01;
+			}
 		}
     }
 }
