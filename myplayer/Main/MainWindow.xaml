@@ -17,10 +17,14 @@
             <RowDefinition Height="17*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <WrapPanel Margin="138,26,138,0" Width="102" Grid.Row="1" Height="20" VerticalAlignment="Top">
-            <Button x:Name="Play_btn" Click="Play_btn_Click">Play</Button>
-            <Button x:Name="Pause_btn" Margin="5,0" Click="Pause_btn_Click" Content="Pause" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-            <Button x:Name="Stop_btn" Click="Stop_btn_Click" Content="Stop"/>
+        <WrapPanel Margin="0,25,0,0" Height="46" VerticalAlignment="Top" Grid.Row="1" HorizontalAlignment="Center">
+
+            <Button x:Name="Pause_btn" Click="Pause_btn_Click" Content="Pause" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0,0,1,0"/>
+
+
+            <Button x:Name="Play_btn"  Height="33" Width="38" HorizontalContentAlignment="Center" Padding="1,1,1,1" BorderThickness="0,0,0,0" Click="Play_btn_Click" Background="#FFDDDDDD" Content="Play"/>
+
+            <Button x:Name="Stop_btn" Click="Stop_btn_Click" Content="Stop" Width="38" BorderThickness="1,0,0,0"/>
         </WrapPanel>
         <Label x:Name="lblStatus" Content="No track" HorizontalAlignment="Center" Grid.Row="1" Width="184" 
                Margin="0,0,0,35" HorizontalContentAlignment="Center"/>

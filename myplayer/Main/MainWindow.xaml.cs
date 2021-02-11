@@ -46,7 +46,10 @@ namespace myplayer
 		{
 			if (mediaPlayer.Source != null)
             {
-				lblStatus.Content = String.Format("{0} / {1}", mediaPlayer.Position.ToString(@"mm\:ss"), mediaPlayer.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+				string pos = mediaPlayer.Position.ToString(@"mm\:ss");
+				string maxtime = mediaPlayer.NaturalDuration.TimeSpan.ToString(@"mm\:ss");
+
+				lblStatus.Content = String.Format("{0} / {1}", pos, max);
 			}
 			else
             {
@@ -56,7 +59,7 @@ namespace myplayer
 
 		private void Play_btn_Click(object sender, RoutedEventArgs e)
 		{
-			mediaPlayer.Play();
+            mediaPlayer.Play();
 		}
 
 		private void Pause_btn_Click(object sender, RoutedEventArgs e)
